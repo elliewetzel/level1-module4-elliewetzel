@@ -5,7 +5,6 @@
  */
 
 import java.awt.Component;
-import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,15 +12,12 @@ import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import javafx.scene.input.KeyCode;
-
-import java.io.IOException;
 
 public class SimonSays extends KeyAdapter implements KeyListener {
 
@@ -31,6 +27,7 @@ public class SimonSays extends KeyAdapter implements KeyListener {
 	HashMap<Integer, String> images = new HashMap<Integer, String>();
 	private int imageIndex;
 	private int tries = 0;
+	int score = 0;
 	private boolean simonSays = false;
 	Date timeAtStart;
 
@@ -50,7 +47,6 @@ public class SimonSays extends KeyAdapter implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-		int score = 0;
 		int i = e.getKeyCode();
 		System.out.println(i);
 		System.out.println(imageIndex);
@@ -60,29 +56,27 @@ public class SimonSays extends KeyAdapter implements KeyListener {
 				score++;
 				System.out.println("Correct! Your score is " + score + ".");
 				speak("correct");
-				tries++;
+				showImage();
 			} else {
 				score--;
 				System.out.println("Wrong, your score is " + score + ".");
 				speak("Incorrect, your score is " + score + ".");
-				tries++;
 			}
 		}
 		// 17. Increase the value of score
 		// 18. Use the speak method to tell the user they were correct
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't say..."
-		else{
+		else {
+
 			if (imageIndex == i) {
 				score--;
 				System.out.println("Wrong, your score is " + score + ".");
 				speak("wrong");
-				tries++;
-			}
-			else {
+			} else {
 				score++;
 				System.out.println("Correct, your score is " + score + ".");
 				speak("correct");
-				tries++;
+				showImage();
 			}
 		}
 		// 20. Increase the value of score
@@ -90,9 +84,9 @@ public class SimonSays extends KeyAdapter implements KeyListener {
 		// 21. Use the speak method to tell the user they were correct
 
 		// 22. Increment tries by 1
-
+		tries++;
 		// 25. If tries is greater than 9 (or however many you want)...
-		if(tries > 3) {
+		if (tries > 3) {
 			JOptionPane.showMessageDialog(null, score);
 			frame.dispose();
 			showImage();
