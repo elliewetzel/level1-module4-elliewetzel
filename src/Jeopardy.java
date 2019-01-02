@@ -125,7 +125,12 @@ public class Jeopardy implements ActionListener {
 			buttonPressed.setText("");
 		}
 		if(buttonPressed.equals(thirdButton)) {
-			askQuestion("")
+			askQuestion("What is the atrial septal defect?", "When a hole between the left and right atrium form", 600);
+			buttonPressed.setText("");
+		}
+		if(buttonPressed.equals(fourthButton)) {
+			askQuestion("What is a lymphocyte?", "A form of white blood cell with a single round nucleus, especially in the lymphatic system", 800);
+			buttonPressed.setText("");
 		}
 		// Call the askQuestion() method with a harder question
 
